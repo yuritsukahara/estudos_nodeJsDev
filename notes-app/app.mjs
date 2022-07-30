@@ -11,19 +11,19 @@ argv.command('add', 'Add a new note', () => {}, (argv) => {
   })
 
 // Create remove command
-argv.command('remove', 'remove new note', () => {}, (argv) => {
+argv.command('remove', 'Remove a note', () => {}, (argv) => {
     console.log('Remove a note')
     console.info(argv)
   })
 
 // Create list command
-argv.command('list', 'list new note', () => {}, (argv) => {
+argv.command('list', 'List yours notes', () => {}, (argv) => {
     console.log('List a note')
     console.info(argv)
   })
 
 // Create read command
-argv.command('read', 'read new note', () => {}, (argv) => {
+argv.command('read', 'Read a note', () => {}, (argv) => {
     console.log('Read a note')
     console.info(argv)
   })
