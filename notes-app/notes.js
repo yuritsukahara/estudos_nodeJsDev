@@ -7,9 +7,7 @@ function getNotes() {
 
 function addNote(title, body) {
 	const notes = loadNotes();
-	const duplicateNotes = notes.filter(function (note) {
-		return note.title === title;
-	});
+	const duplicateNotes = notes.filter((note) => note.title === title);
 
 	if (duplicateNotes.length === 0) {
 		notes.push({ title: title, body: body });
@@ -18,20 +16,24 @@ function addNote(title, body) {
 	} else {
 		console.log(chalk.red.inverse('Note title taken!'));
 	}
-} 
+}
 
 function removeNotes(title) {
 	const notes = loadNotes();
-	const notesToKeep = notes.filter(function (note) {
-		return note.title !== title;
-	});
+	const notesToKeep = notes.filter((note) => note.title !== title);
 
 	if (notes.length === notesToKeep.length) {
 		console.log(chalk.red.inverse('No note found!'));
 	} else {
-        console.log(chalk.green.inverse('Note removed!'));
-        saveNotes(notesToKeep);
+		console.log(chalk.green.inverse('Note removed!'));
+		saveNotes(notesToKeep);
 	}
+}
+
+function listNotes() {
+	const notes = loadNotes();
+	console.log(chalk.cyan.inverse('Your Notes'));
+	notes.forEach((note) => console.log('-', note.title));
 }
 
 function loadNotes() {
@@ -49,4 +51,4 @@ function saveNotes(notes) {
 	fs.writeFileSync('notes.json', dataJSON);
 }
 
-export { getNotes, addNote, removeNotes };
+export { getNotes, addNote, removeNotes, listNotes };

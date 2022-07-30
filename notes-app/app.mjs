@@ -63,4 +63,13 @@ argv.command(
 	}
 );
 
+argv.command(
+	'list',
+	'List all notes',
+	() => {},
+	() => {
+		notes.listNotes();
+	}
+);
+
 argv.demandCommand(1).parse();
