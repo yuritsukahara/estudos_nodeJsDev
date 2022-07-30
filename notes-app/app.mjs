@@ -4,6 +4,7 @@ import * as notes from './notes.js';
 
 const argv = yargs(hideBin(process.argv));
 argv.version('1.1.0');
+
 // Create add command
 argv.command(
 	'add',
@@ -44,11 +45,10 @@ argv.command(
 // Create list command
 argv.command(
 	'list',
-	'List yours notes',
+	'List all notes',
 	() => {},
-	(argv) => {
-		console.log('List a note');
-		console.info(argv);
+	() => {
+		notes.listNotes();
 	}
 );
 
@@ -56,20 +56,14 @@ argv.command(
 argv.command(
 	'read',
 	'Read a note',
-	() => {},
+	{title:{
+		describe: 'Note Title',
+		demandOption: true,
+		type:'string',
+	}},
 	(argv) => {
-		console.log('Read a note');
-		console.info(argv);
+		notes.readNote(argv.title);
 	}
-);
-
-argv.command(
-	'list',
-	'List all notes',
-	() => {},
-	() => {
-		notes.listNotes();
-	}
-);
+)
 
 argv.demandCommand(1).parse();
