@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import fs from 'fs';
 
 function getNotes() {
@@ -15,8 +16,22 @@ function addNote(title, body) {
 		saveNotes(notes);
 		console.log('New note added!');
 	} else {
-        console.log('Note title taken!');
-    }
+		console.log('Note title taken!');
+	}
+}
+
+function removeNotes(title) {
+	const notes = loadNotes();
+	const notesToKeep = notes.filter(function (note) {
+		return note.title !== title;
+	});
+
+	if (notes.length === notesToKeep.length) {
+		console.log(chalk.red.inverse('No note found!'));
+	} else {
+        console.log(chalk.green.inverse('Note removed!'));
+        saveNotes(notesToKeep);
+	}
 }
 
 function loadNotes() {
@@ -34,4 +49,4 @@ function saveNotes(notes) {
 	fs.writeFileSync('notes.json', dataJSON);
 }
 
-export { getNotes, addNote };
+export { getNotes, addNote, removeNotes };

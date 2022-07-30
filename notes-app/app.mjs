@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import * as notes from './notes.js';
@@ -22,7 +21,7 @@ argv.command(
 		},
 	},
 	(argv) => {
-    notes.addNote(argv.title, argv.body)
+		notes.addNote(argv.title, argv.body);
 	}
 );
 
@@ -30,10 +29,15 @@ argv.command(
 argv.command(
 	'remove',
 	'Remove a note',
-	() => {},
+	{
+		title: {
+			describe: 'Note Title',
+			demandOption: true,
+			type: 'string',
+		},
+	},
 	(argv) => {
-		console.log('Remove a note');
-		console.info(argv);
+		notes.removeNotes(argv.title);
 	}
 );
 
