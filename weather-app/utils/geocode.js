@@ -1,11 +1,8 @@
 require('dotenv').config();
 
-const weatherKey = process.env.WEATHERAPIKEY;
 const mapBoxKey = process.env.MAPBOXAPIKEY;
 
 const request = require('postman-request');
-
-const url = `http://api.weatherstack.com/current?access_key=${weatherKey}&query=Apucarana`;
 
 const geocode = (adress, callback) => {
 	const url =

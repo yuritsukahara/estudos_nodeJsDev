@@ -1,4 +1,5 @@
-const geocode = require('./utils/geocode')
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
 // request({ url: url, json: true }, (error, response) => {
 // 	if (error) {
@@ -30,8 +31,12 @@ const geocode = require('./utils/geocode')
 // 	}
 // });
 
-
 geocode('Apucarana', (error, data) => {
+	console.log('Error', error);
+	console.log('Data', data);
+});
+
+forecast(-51.4611, -23.5525, (error, data) => {
 	console.log('Error', error);
 	console.log('Data', data);
 });
