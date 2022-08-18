@@ -9,13 +9,13 @@ const geocode = (adress, callback) => {
 		`https://api.mapbox.com/geocoding/v5/mapbox.places/` +
 		encodeURIComponent(adress) +
 		`.json?access_token=${mapBoxKey}`;
-	request({ url: url, json: true }, (error, response) => {
+	request({ url, json: true }, (error, {body}) => {
 		if (error) {
 			callback('Unable to connect to locatation services!', undefined);
-		} else if (response.body.features.length === 0) {
+		} else if (body.features.length === 0) {
 			callback('Unable to find location. Try another search', undefined);
 		} else {
-			const geoData = response.body.features[0];
+			const geoData = body.features[0];
 			callback(undefined, {
 				location: geoData.place_name,
 				latitude: geoData.center[1],
