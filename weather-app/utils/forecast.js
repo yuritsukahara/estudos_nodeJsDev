@@ -4,21 +4,8 @@ const request = require('postman-request');
 
 const weatherKey = process.env.WEATHERAPIKEY;
 
-// request({ url: url, json: true }, (error, response) => {
-// 	if (error) {
-// 		console.log('Unable to connect to weather service!');
-// 	} else if (response.body.error) {
-// 		console.log('Unable to find location ');
-// 	} else {
-// 		const currentData = response.body.current;
-// 		console.log(
-// 			`Agora: ${currentData.temperature}ºC. Com a sensação de ${currentData.feelslike}ºC.`
-// 		);
-// 	}
-
 const forecast = (latitude, longitude, callback) => {
 	const url = `http://api.weatherstack.com/current?access_key=${weatherKey}&query=${longitude},${latitude}&units=m`;
-    console.log(url)
 	request({ url: url, json: true }, (error, response) => {
 		if (error) {
 			callback('Unable to connect to weather service!', undefined);
@@ -34,16 +21,11 @@ const forecast = (latitude, longitude, callback) => {
             const humidity = currentData.humidity;
             const weatherDescription = currentData.weather_descriptions;
 
-			callback(undefined, {
-				location: location,
-				temperature: temperature,
-				wind_speed: windSpeed,
-				rainnig: precip,
-                humidity: humidity,
-                weatherDescription: weatherDescription,
-			});
-		}
-	});
-};
+			callback(undefined, 
+				'Em ' + location + ' está ' + temperature + 'ºC.' + ' Vento a ' + windSpeed + 'km/h. Com precipitação de ' + precip + 'mm. Como diria o Inglês: ' + weatherDescription)               
+        }
+
+		})}
+
 
 module.exports = forecast;
