@@ -9,7 +9,7 @@ const geocode = (adress, callback) => {
 		`https://api.mapbox.com/geocoding/v5/mapbox.places/` +
 		encodeURIComponent(adress) +
 		`.json?access_token=${mapBoxKey}`;
-	request({ url, json: true }, (error, {body}) => {
+	request({ url, json: true }, (error, { body }) => {
 		if (error) {
 			callback('Unable to connect to locatation services!', undefined);
 		} else if (body.features.length === 0) {
