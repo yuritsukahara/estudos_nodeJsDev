@@ -11,9 +11,9 @@ const geocode = (adress, callback) => {
 		`.json?access_token=${mapBoxKey}`;
 	request({ url, json: true }, (error, { body }) => {
 		if (error) {
-			callback('Unable to connect to locatation services!', undefined);
+			callback('Sem conexão com o servidor!', undefined);
 		} else if (body.features.length === 0) {
-			callback('Unable to find location. Try another search', undefined);
+			callback('Local não encontrado, tente outro!', undefined);
 		} else {
 			const geoData = body.features[0];
 			callback(undefined, {

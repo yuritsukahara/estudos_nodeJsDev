@@ -6,20 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" href="/img/icon.png">
-    <title>Weather</title>
+    <title>Previsão de Tempo</title>
 </head>
 <body>
     <div class="main-content">
         {{>header}}
-        <p>Use this to get your weather!</p>
+        <p>Previsão de tempo da Shopee</p>
 
         <form action="">
-            <input placeholder="Location"/>
-            <button>Search</button>
+            <input placeholder="Lugar"/>
+            <button>Dale!</button>
         </form>
+
+        <p id='message-one'></p>
+        <p id='message-two'></p>
     </div>
     {{>footer}}
-    
+
     <script src="/js/app.js"></script>
 </body>
 </html> 

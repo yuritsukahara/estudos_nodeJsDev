@@ -21,30 +21,30 @@ app.use(express.static(publicDirPath));
 
 app.get('', (req, res) => {
 	res.render('index', {
-		title: 'Weather App',
+		title: 'Climatempo da Shopee',
 		name: 'Yuri Tsukahara',
 	});
 });
 
 app.get('/about', (req, res) => {
 	res.render('about', {
-		title: 'About Me',
+		title: 'Sobre',
 		name: 'Yuri Tsukahara',
 	});
 });
 
 app.get('/help', (req, res) => {
 	res.render('help', {
-		title: 'Help',
+		title: 'Ajuda',
 		name: 'Yuri Tsukahara',
-		helpMessage: 'Help Message',
+		helpMessage: 'Não tem Galantia!',
 	});
 });
 
 app.get('/weather', (req, res) => {
 	if (!req.query.address) {
 		return res.send({
-			error: 'You must provide a valid location',
+			error: 'Coloque um local válido',
 		});
 	}
 
