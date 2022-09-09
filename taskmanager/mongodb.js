@@ -20,42 +20,26 @@ MongoClient.connect(
 
 		const db = client.db(databaseName);
 
-		// db.collection('users').findOne(
-		// 	{ _id: new ObjectId('630ff33509846d46476dbace') },
-		// 	(error, user) => {
-		// 		if (error) {
-		// 			return console.log('Unable to fetch');
-		// 		}
-
-		// 		console.log(user);
-		// 	}
-		// );
-
-		// db.collection('users')
-		// 	.find({ age: 22 })
-		// 	.count((error, count) => {
-		// 		console.log(count);
-		// 	});
-
-		db.collection('tasks').findOne(
-			{ _id: new ObjectId('630fe6f3564e751f787830ca') },
-			(error, task) => {
-				if (error) {
-					return 'Unable to find';
-				}
-
-				console.log(task);
-			}
-		);
+		db.collection('users')
+			.deleteMany({
+				age: 23,
+			})
+			.then((result) => {
+				console.log(result);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 
 		db.collection('tasks')
-			.find({ completed: false })
-			.toArray((error, tasks) => {
-				if (error) {
-					return 'Unable to find';
-				}
-
-				console.log(tasks);
+			.deleteOne({
+				description: 'Estudar',
+			})
+			.then((result) => {
+				console.log(result);
+			})
+			.catch((error) => {
+				console.log(error);
 			});
 	}
 );
