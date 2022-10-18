@@ -6,6 +6,18 @@ const taskRouter = require('./routers/task');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// app.use((req, res, next) => {
+// 	if (req.method === 'GET') {
+// 		res.send('GET requests are disabled');
+// 	} else {
+// 		next();
+// 	}
+// });
+
+app.use((req, res, next) => {
+	res.status(503).send('In Maintenance, check back soon');
+});
+
 app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
@@ -16,6 +28,7 @@ app.listen(port, () => {
 });
 
 const jwt = require('jsonwebtoken');
+const { secondary } = require('mongodb/lib/core/topologies/read_preference');
 
 const myFunction = async () => {
 	const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', {
