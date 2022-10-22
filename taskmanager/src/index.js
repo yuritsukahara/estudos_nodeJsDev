@@ -22,14 +22,3 @@ app.listen(port, () => {
 	console.log('Server is up on port ' + port);
 	console.log('http://localhost:' + port);
 });
-
-const pet = {
-	name: 'Holo',
-};
-
-pet.toJSON = function (){
-	console.log(this)
-	return this
-}
-
-console.log(JSON.stringify(pet));
