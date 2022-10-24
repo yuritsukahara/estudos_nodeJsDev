@@ -17,13 +17,20 @@ router.post('/tasks', auth, async (req, res) => {
 	}
 });
 
-// Get /tasks?completed=false
-// Get /tasks?limit=2&skip=2
-router.get('/tasks/', auth, async (req, res) => {
+// GET /tasks/?completed=false
+// GET /tasks/?limit=2&skip=2
+// GET /tasks/?sortBy=createdAt_desc
+router.get('/tasks', auth, async (req, res) => {
 	const match = {};
+	const sort = {};
 
 	if (req.query.completed) {
 		match.completed = req.query.completed === 'true';
+	}
+
+	if (req.query.sortBy) {
+		const parts = req.query.sortBy.split('_');
+		sort[parts[0]] = parts[1] === 'desc' ? -1 : 1;
 	}
 
 	try {
@@ -34,11 +41,12 @@ router.get('/tasks/', auth, async (req, res) => {
 			options: {
 				limit: parseInt(req.query.limit),
 				skip: parseInt(req.query.skip),
+				sort,
 			},
 		});
 		res.send(req.user.tasks);
 	} catch (e) {
-		res.status(500).send();
+		res.status(500).send(e);
 	}
 });
 
